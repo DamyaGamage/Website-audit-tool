@@ -1,0 +1,168 @@
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  color: #1a202c;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+header {
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+  color: white;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+header h1 { font-size: 2rem; font-weight: 700; }
+header p  { margin-top: 0.5rem; opacity: 0.8; font-size: 1rem; }
+
+/* ── Main ── */
+main { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem 4rem; }
+
+/* ── Input ── */
+.input-section { margin-bottom: 2rem; }
+.input-row { display: flex; gap: 0.75rem; }
+#urlInput {
+  flex: 1;
+  padding: 0.85rem 1.1rem;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  transition: border-color 0.2s;
+}
+#urlInput:focus { outline: none; border-color: #4299e1; }
+
+#analyzeBtn {
+  padding: 0.85rem 1.75rem;
+  background: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+#analyzeBtn:hover   { background: #3182ce; }
+#analyzeBtn:disabled { background: #a0aec0; cursor: not-allowed; }
+
+.error-msg { color: #e53e3e; margin-top: 0.5rem; font-size: 0.9rem; }
+
+/* ── Loader ── */
+.loader { text-align: center; padding: 3rem 0; color: #718096; }
+.spinner {
+  width: 48px; height: 48px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #4299e1;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Card ── */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.card h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem; }
+.section-note { color: #718096; font-size: 0.85rem; margin-bottom: 1.25rem; }
+
+/* ── Metrics Grid ── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1rem;
+}
+.metric-item {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+}
+.metric-label { font-size: 0.75rem; color: #718096; text-transform: uppercase; letter-spacing: 0.05em; }
+.metric-value { font-size: 1.5rem; font-weight: 700; color: #2d3748; margin-top: 0.2rem; }
+.metric-sub   { font-size: 0.8rem; color: #a0aec0; margin-top: 0.1rem; }
+.metric-item.wide { grid-column: 1 / -1; }
+.metric-item.wide .metric-value { font-size: 1rem; font-weight: 500; }
+
+/* ── Insights Grid ── */
+.insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 600px) { .insights-grid { grid-template-columns: 1fr; } }
+
+.insight-item {
+  background: #f7fafc;
+  border-left: 4px solid #4299e1;
+  border-radius: 0 8px 8px 0;
+  padding: 1rem;
+}
+.insight-label { font-weight: 700; font-size: 0.85rem; color: #4299e1; text-transform: uppercase; margin-bottom: 0.4rem; }
+.insight-text  { font-size: 0.9rem; color: #4a5568; line-height: 1.5; }
+
+/* ── Recommendations ── */
+.rec-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  background: #fff;
+}
+.rec-item:last-child { margin-bottom: 0; }
+.rec-priority {
+  min-width: 36px; height: 36px;
+  background: #ebf8ff;
+  color: #2b6cb0;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.rec-title   { font-weight: 700; margin-bottom: 0.25rem; }
+.rec-detail  { font-size: 0.9rem; color: #4a5568; line-height: 1.4; }
+.rec-metric  {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.78rem;
+  background: #ebf8ff;
+  color: #2b6cb0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+
+/* ── Prompt Logs ── */
+.logs-card { background: #1a202c; color: #e2e8f0; }
+.logs-card h2, .logs-card .section-note { color: #a0aec0; }
+details { margin-bottom: 0.75rem; border: 1px solid #2d3748; border-radius: 6px; overflow: hidden; }
+summary {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #63b3ed;
+  background: #2d3748;
+  user-select: none;
+}
+summary:hover { background: #4a5568; }
+pre {
+  padding: 1rem;
+  font-size: 0.78rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #e2e8f0;
+  background: #1a202c;
+  max-height: 300px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+/* ── Utility ── */
+.hidden { display: none !important; }

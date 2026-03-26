@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 const cors = require('cors');
 
 const app = express();
@@ -13,8 +13,8 @@ app.use(express.json());
 app.use(express.static('public'));
 
 // Initialize Gemini client
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+const genAI = new GoogleGenAI(process.env.GEMINI_API_KEY);
+
 
 // ─────────────────────────────────────────────
 // SCRAPER — extracts factual metrics from a URL
@@ -160,8 +160,11 @@ Generate the structured analysis JSON now.`;
   // (Gemini Flash works best with a single combined prompt)
   const fullPrompt = `${systemPrompt}\n\n${userPrompt}`;
 
-  const result = await model.generateContent(fullPrompt);
-  const rawOutput = result.response.text();
+  const result = await genAI.models.generateContent({
+    model: 'gemini-2.5-flash',
+    contents: fullPrompt,
+    });
+    const rawOutput = result.text;
 
   // Log everything to the console (for prompt-logs.md)
   console.log('\n======= PROMPT LOG =======');
