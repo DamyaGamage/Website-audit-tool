@@ -3,8 +3,8 @@
 
 An AI-powered single-page website analyzer for SEO, CTA, and UX evaluation — built as part of the EIGHT25MEDIA AI-Native Software Engineer assignment.
 
-> Paste any URL → get factual metrics + structured AI insights + prioritized recommendations in seconds.
-
+# live demo 
+URL : website-audit-tool-production-b2b1.up.railway.app
 ---
 
 ## 🚀 Quick Start
